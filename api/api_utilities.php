@@ -151,8 +151,9 @@ function request_post($dir, $post) {
     $post["version"] = $_POST["version"];
     $post["userid"] = $_POST["userid"];
     $post["token"] = $_POST["token"];
-    $url = dirname("http://" . $_SERVER['SERVER_NAME'] . $_SERVER["REQUEST_URI"]) . $dir;
+    $url = dirname("http://" . $_SERVER['SERVER_NAME']. ":" . $_SERVER['SERVER_PORT'] . $_SERVER["REQUEST_URI"]) . $dir;
     $options = array('http' => array(
+    	    'header' => 'Content-Type: application/x-www-form-urlencoded',
             'method' => 'POST',
             'content' => http_build_query($post),
         ),
